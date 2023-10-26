@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>名前ランキングクイズ</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            margin-top: 10px;
+        }
+
+        p {
+            font-size: 18px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 10px;
+        }
+
+        input[type="text"] {
+            padding: 5px;
+            width: 100%;
+        }
+
+        #resultMessage {
+            color: blue;
+        }
+
+        #correctMessage {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>名前ランキングクイズ</h1>
+    <p>次のランキングトップ10に入る名前を当ててください。</p>
+
+    <input type="text" id="nameInput" placeholder="名前を入力" onkeyup="handleKeyPress(event)">
+    <button onclick="checkName()">答えを確認</button>
+
+    <p id="resultMessage"></p>
+    <p id="correctMessage"></p>
+
+    <h2>ランキング</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>順位</th>
+                <th>名前</th>
+            </tr>
+        </thead>
+        <tbody id="rankingTable">
+            <tr>
+                <td>1</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        const correctNames = ["太郎", "二郎"];
+
+        function handleKeyPress(event) {
+            if (event.key === "Enter") {
+                checkName();
+            }
+        }
+
+        function checkName() {
+            const name = document.getElementById("nameInput").value;
+            const rankingTable = document.getElementById("rankingTable");
+            const rows = rankingTable.rows;
+            let found = false;
+
+            for (let i = 0; i < correctNames.length; i++) {
+                if (correctNames[i] === name) {
+                    found = true;
+                    const cell = rows[i].cells[1];
+                    cell.textContent = name;
+                    break;
+                }
+            }
+
+            // メッセージをリセット
+            document.getElementById("resultMessage").textContent = "";
+            document.getElementById("correctMessage").textContent = "";
+
+            if (found) {
+                document.getElementById("correctMessage").textContent = "正解！ランキングに入りました！";
+            } else {
+                document.getElementById("resultMessage").textContent = "不正解。ランク外です.";
+            }
+        }
+    </script>
+</body>
+</html>
