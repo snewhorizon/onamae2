@@ -132,7 +132,7 @@
                     found = true;
                     const cell = rows[i].cells[1];
                     cell.textContent = name;
-                    document.getElementById("correctMessage").textContent = name + "は" + (i + 1) + "位です。";
+                    document.getElementById("correctMessage").textContent = "正解！ " + name + "は" + (i + 1) + "位です。";
                     break;
                 }
             }
@@ -141,8 +141,9 @@
             document.getElementById("resultMessage").textContent = "";
 
             if (!found) {
-                document.getElementById("correctMessage").textContent = name + "はランク外です。";
-                document.getElementById("resultMessage").textContent = "";
+                document.getElementById("correctMessage").textContent = "";
+                document.getElementById("resultMessage").textContent = "不正解。 " + name + "はランク外です.";
+                document.getElementById("resultMessage").style.color = "blue"; // 不正解メッセージを青色に変更
             }
         }
     </script>
