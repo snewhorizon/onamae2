@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> <!-- ビューポートの設定変更 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>名前ランキングクイズ</title>
     <style>
         body {
@@ -132,18 +132,17 @@
                     found = true;
                     const cell = rows[i].cells[1];
                     cell.textContent = name;
+                    document.getElementById("correctMessage").textContent = name + "は" + (i + 1) + "位です。";
                     break;
                 }
             }
 
             // メッセージをリセット
             document.getElementById("resultMessage").textContent = "";
-            document.getElementById("correctMessage").textContent = "";
 
-            if (found) {
-                document.getElementById("correctMessage").textContent = "正解！ランキングに入りました！";
-            } else {
-                document.getElementById("resultMessage").textContent = "不正解。ランク外です.";
+            if (!found) {
+                document.getElementById("correctMessage").textContent = name + "はランク外です。";
+                document.getElementById("resultMessage").textContent = "";
             }
         }
     </script>
